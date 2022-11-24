@@ -1,0 +1,40 @@
+﻿@model IEnumerable<StoreClothess.Models.User>
+
+<h2>Сотрудники</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SellerCashier.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellerCashier.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => user.Admivistrator.Name)
+                @Html.DisplayFor(modelItem => user.Director.Name)
+                @Html.DisplayFor(modelItem => user.Bookkeeper.Name)
+                @Html.DisplayFor(modelItem => user.SellerCashier.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.Admivistrator.Employee)
+                @Html.DisplayFor(modelItem => user.Director.Employee)
+                @Html.DisplayFor(modelItem => user.Bookkeeper.Employee)
+                @Html.DisplayFor(modelItem => user.SellerCashier.Employee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.Email)
+            </td>
+        </tr>
+    }
+</table>

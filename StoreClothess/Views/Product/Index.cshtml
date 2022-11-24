@@ -1,0 +1,79 @@
+﻿@model IEnumerable<StoreClothess.Models.Product>
+
+@{
+    ViewData["Title"] = "Товары";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Список доступных товаров</h1>
+
+<p>
+    <a asp-action="Create">Добавить товар</a>
+</p>
+
+<form asp-controller="Product" asp-action="Index">
+    <p>
+        Название товара: <input type="text" name="SearchString" />
+        <input type="submit" value="Поиск" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Colour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prise)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Colour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prise)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Store.Stores)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробно</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>|
+                <a class="btn btn-warning" asp-controller="OrderList" asp-action="addToOrder" asp-route-id="@item.Id">Добавить в заказ</a>
+            </td>
+        </tr>
+        }
+        
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Полный список товаров</a>
+</div>

@@ -1,0 +1,42 @@
+﻿@model StoreClothess.Models.Store
+
+@{
+    ViewData["Title"] = "Удаление";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы уверены в своем решении удалить данный магазин?</h3>
+<div>
+    <h4>Магазин</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Stores)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stores)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+    </dl>
+    
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться к содержимому</a>
+    </form>
+</div>

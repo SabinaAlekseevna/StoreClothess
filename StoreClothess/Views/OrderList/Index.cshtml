@@ -1,0 +1,13 @@
+﻿@model StoreClothess.ViewModel.OderProductModelView
+
+<div class="container">
+    @foreach (var el in Model.productOrd.ProductListOrd)
+    {
+        <div class="alert alert-warning mt-3">
+            <b>Товар:</b> @el.Product.Name<br />
+            <b>Цена</b> @el.Product.Prise.ToString("c")
+        </div>
+    }
+    <hr/>
+    <a class="btn btn-danger" asp-controller="Order" asp-action="Create">Подтвердить</a>
+</div>

@@ -15,5 +15,31 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: #f7f7fa;
+    background-color: #5F9EA0;
+}
+
+p {
+    margin: 20px;
+    font-family: "Yeseva One";
+    font-size: 16px;
+    margin: 0px 1px 2px 3px;
+}
+
+img {
+    position: center;
+    margin-bottom: 0px;
+    background-size: 100% 100%;
+    object-fit: contain;
+}
+
+a:link {
+    color: #F0FFFF; /* ÷вет ссылок */
+}
+
+a:visited {
+    color: #F0FFFF; /* ÷вет посещенных ссылок */
+}
+
+a:active {
+    color: #F0FFFF; /* ÷вет активной ссылки */
 }

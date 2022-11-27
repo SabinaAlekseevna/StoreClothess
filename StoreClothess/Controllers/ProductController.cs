@@ -18,6 +18,12 @@ namespace StoreClothess.Controllers
             _context = context;
         }
 
+        public IActionResult Home()
+        {
+            return View();
+        }
+
+
         public async Task<IActionResult> Index(string searchString)
         {
 

@@ -15,8 +15,11 @@ namespace StoreClothess.Controllers
             _logger = logger;
             _userManager = userManager;
         }
+        public IActionResult Home()
+        {
+            return View();
+        }
 
-  
 
         public async Task<IActionResult> Index()
         {

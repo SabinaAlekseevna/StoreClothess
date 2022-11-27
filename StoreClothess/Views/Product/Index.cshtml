@@ -61,13 +61,13 @@
                 @Html.DisplayFor(modelItem => item.Prise)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Store.Stores)
+                @Html.DisplayFor(modelItem => item.StoreId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Подробно</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>|
-                <a class="btn btn-warning" asp-controller="OrderList" asp-action="addToOrder" asp-route-id="@item.Id">Добавить в заказ</a>
+                    <a class="btn btn-primary" asp-controller="OrderList" asp-action="addToOrder" asp-route-id="@item.Id">Добавить в заказ</a>
             </td>
         </tr>
         }

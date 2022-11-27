@@ -1,4 +1,7 @@
-﻿namespace StoreClothess.Models
+﻿using Microsoft.EntityFrameworkCore;
+using StoreClothess.Data;
+
+namespace StoreClothess.Models
 {
     public class ProductOrd
     {
@@ -19,7 +22,7 @@
 
             session.SetString("ProductId", productOrdId);
 
-            return new ProductOrd(context) { ProductOrdId = productOrdId};
+            return new ProductOrd(context) { ProductOrdId = productOrdId };
         }
 
         public void AddToOrder(Product product)

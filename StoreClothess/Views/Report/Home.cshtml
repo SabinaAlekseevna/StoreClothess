@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+@{
+    ViewData["Title"] = "Отчеты";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/fone.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/StoreClothess.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+<div class="text-center">
+    <h1 class="display-4">Отчеты</h1>
+    <br>
+
+
+
+    <a class="btn btn-primary" asp-controller="ReportEmployee" asp-action="Index">Отчет о сотрудниках</a>
+    <br>
+    <br>
+
+    <a class="btn btn-primary" asp-controller="Report" asp-action="Index" background-color:#4682B4>Отчет о товарах</a>
+
+    @*<img src="~/Foto/re.jpg" alt="Sample Photo" />*@
+
+
+
+
+</div>
+    </body>

@@ -8,14 +8,25 @@
         <div class="form-group">
             <label asp-for="Director" class="control-label"></label>
             <input asp-for="Director" class="form-control" />
-            <span asp-validation-for="Director" class="text-danger"></span>
+            <span asp-validation-for="Director" class="text-light"></span>
         </div>
         <input type="hidden" asp-for="Id" />
         <div class="form-group">
             <label asp-for="Admivistrator" class="control-label"></label>
             <input asp-for="Admivistrator" class="form-control" />
-            <span asp-validation-for="Admivistrator" class="text-danger"></span>
+            <span asp-validation-for="Admivistrator" class="text-light"></span>
         </div>
+        <div class="form-group">
+            <label asp-for="Bookkeeper" class="control-label"></label>
+            <input asp-for="Bookkeeper" class="form-control" />
+            <span asp-validation-for="Bookkeeper" class="text-light"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SellerCashier" class="control-label"></label>
+            <input asp-for="SellerCashier" class="form-control" />
+            <span asp-validation-for="SellerCashier" class="text-light"></span>
+        </div>
+
         <div class="form-group">
             <input type="submit" value="Save" class="btn btn-primary" />
         </div>

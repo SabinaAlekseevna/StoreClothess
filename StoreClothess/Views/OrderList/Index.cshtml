@@ -3,11 +3,13 @@
 <div class="container">
     @foreach (var el in Model.productOrd.ProductListOrd)
     {
-        <div class="alert alert-warning mt-3">
+        <div class="alert alert-dark" role="alert">
             <b>Товар:</b> @el.Product.Name<br />
             <b>Цена</b> @el.Product.Prise.ToString("c")
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
     <hr/>
-    <a class="btn btn-danger" asp-controller="Order" asp-action="Create">Подтвердить</a>
+    <a class="btn btn-primary" asp-controller="Order" asp-action="Create">Подтвердить</a>
+    <a class="btn btn-primary" asp-controller="Product" asp-action="Index">Вернуться к списку товаров</a>
 </div>

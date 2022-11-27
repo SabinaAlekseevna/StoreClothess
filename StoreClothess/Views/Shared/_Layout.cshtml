@@ -20,7 +20,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                      
-                        <li class="nav-item">
+                        @*  <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="SellerCashier" asp-action="Index">Продавцы-кассиры</a>
                         </li>
                         <li class="nav-item">
@@ -32,6 +32,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Bookkeeper" asp-action="Index">Бухгалтера</a>
                         </li>
+                         *@
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Home">Товары</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Store" asp-action="Home">Магазины</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Administrator" asp-action="Home">Сотрудники</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Report" asp-action="Home">Отчеты</a>
+                        </li>
+
+
                         @*    <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
@@ -54,7 +69,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Магазин одежды - <a asp-area="" asp-controller="Home" asp-action="Index">Основное меню</a>
+            &copy; 2022 - Магазин одежды
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

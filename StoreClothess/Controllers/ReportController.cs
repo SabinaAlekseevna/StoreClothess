@@ -26,6 +26,11 @@ namespace StoreClothess.Controllers
         // return View(await products.ToListAsync());
         //}
 
+        public IActionResult Home()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Index(string searchString)
         {
 

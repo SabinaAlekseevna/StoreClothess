@@ -17,6 +17,11 @@ namespace StoreClothess.Controllers
             _context = context;
         }
 
+        public IActionResult Home()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             List<Store> store;

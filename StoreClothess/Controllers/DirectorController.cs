@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using StoreClothess.Models;
 
 namespace StoreClothess.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Директор")]
     public class DirectorController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -43,7 +44,7 @@ namespace StoreClothess.Controllers
         }
 
 
-        [Authorize(Roles = "Директор")]
+       
         public IActionResult Create()
         {
             ViewData["UserID"] = new SelectList(_userManager.Users, "Id", "UserName");
@@ -52,14 +53,14 @@ namespace StoreClothess.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Name,Age,Phone,Employee,UserID")] Director director)
+        [ValidateAntiForgeryToken] 
+        public async Task<IActionResult> Create([Bind("ID,Name,Age,Phone,Employee,UserID, Times, price")] Director director)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(director);
                 await _context.SaveChangesAsync();
-                _logger.LogInformation("Был создан диретор");
+                _logger.LogInformation("Был создан директор");
                 return RedirectToAction(nameof(Index));
             }
             
@@ -68,7 +69,7 @@ namespace StoreClothess.Controllers
         }
 
 
-        [Authorize(Roles = "Директор")]
+       
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,14 +82,14 @@ namespace StoreClothess.Controllers
             {
                 return NotFound();
             }
-            
+            ViewData["UserID"] = new SelectList(_userManager.Users, "Id", "UserName", director.UserID);
             return View(director);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,Phone,Employee,UserID")] Director director)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Age,Phone,Employee,UserID, Times, price")] Director director)
         {
             if (id != director.ID)
             {
@@ -119,7 +120,7 @@ namespace StoreClothess.Controllers
         }
 
 
-        [Authorize(Roles = "Директор")]
+       
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,7 +138,7 @@ namespace StoreClothess.Controllers
             return View(director);
         }
 
-        // POST: Students/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -150,7 +151,7 @@ namespace StoreClothess.Controllers
 
         private bool DirectorExists(int id)
         {
-            return _context.SellerCashierDB.Any(e => e.ID == id);
+            return _context.DirectorDB.Any(e => e.ID == id);
         }
     }
 }

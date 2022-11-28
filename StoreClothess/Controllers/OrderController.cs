@@ -7,6 +7,7 @@ using StoreClothess.Data.Migrations;
 
 namespace StoreClothess.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrder allOrder;

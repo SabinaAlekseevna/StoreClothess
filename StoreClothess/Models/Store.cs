@@ -5,13 +5,13 @@
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(30)]
+        
         [Display(Name = "Название магазина")]
         [Required(ErrorMessage = "Пожалуйста, введите название магазина")]
 
         public string Stores { get; set; }
 
-        [MaxLength(20)]
+        
         [Display(Name = "Адрес")]
         [Required(ErrorMessage = "Пожалуйста, введите адрес магазина")]
         public string Address { get; set; }

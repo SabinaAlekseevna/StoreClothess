@@ -81,7 +81,7 @@ namespace StoreClothess.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Администратор, Директор")]
+        [Authorize(Roles = "Директор")]
         public IActionResult Delete(int Id)
         {
             Store store = GetStore(Id);

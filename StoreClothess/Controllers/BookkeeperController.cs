@@ -4,7 +4,7 @@ using StoreClothess.Models;
 
 namespace StoreClothess.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Директор")]
     public class BookkeeperController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -46,7 +46,7 @@ namespace StoreClothess.Controllers
         }
 
 
-        [Authorize(Roles = "Директор")]
+        
         public IActionResult Create()
         {
             ViewData["UserID"] = new SelectList(_userManager.Users, "Id", "UserName");
@@ -56,13 +56,13 @@ namespace StoreClothess.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Age,Phone,Employee, UserID")] Bookkeeper bookkeeper)
+        public async Task<IActionResult> Create([Bind("ID, Name,Age,Phone,Employee,UserID, Times, price")] Bookkeeper bookkeeper)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(bookkeeper);
                 await _context.SaveChangesAsync();
-                _logger.LogInformation("Был создан диретор");
+                _logger.LogInformation("Был создан бухгалтер");
                 return RedirectToAction(nameof(Index));
             }
 
@@ -71,7 +71,7 @@ namespace StoreClothess.Controllers
         }
 
        
-        [Authorize(Roles = "Директор")]
+       
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,14 +84,14 @@ namespace StoreClothess.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["UserID"] = new SelectList(_userManager.Users, "Id", "UserName", bookkeeper.UserID);
             return View(bookkeeper);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Age,Phone,Employee,UserID")] Bookkeeper bookkeeper)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Age,Phone,Employee,UserID, Times, price")] Bookkeeper bookkeeper)
         {
             if (id != bookkeeper.ID)
             {
@@ -122,7 +122,7 @@ namespace StoreClothess.Controllers
         }
 
  
-        [Authorize(Roles = "Директор")]
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -153,7 +153,7 @@ namespace StoreClothess.Controllers
 
         private bool DirectorExists(int id)
         {
-            return _context.SellerCashierDB.Any(e => e.ID == id);
+            return _context.BookkeeperDB.Any(e => e.ID == id);
         }
     }
 }

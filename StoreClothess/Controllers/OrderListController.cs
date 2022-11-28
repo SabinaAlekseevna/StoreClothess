@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StoreClothess.Data.Interfaces;
+using StoreClothess.Data.Migrations;
 using StoreClothess.Data.Repository;
 using StoreClothess.ViewModel;
 
 namespace StoreClothess.Controllers
 {
+    [Authorize]
     public class OrderListController : Controller
     {
         private readonly ProductOrd productOrd;

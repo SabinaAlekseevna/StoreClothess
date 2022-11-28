@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "Bookkeeper";
 }
+@functions
+{
+    public int Multiplication(int a, decimal b)
+    {
+        return Decimal.ToInt32(a * b);
+    }
+}
 
 <h1>Бухгалтера</h1>
 
@@ -25,7 +32,16 @@
                 @Html.DisplayNameFor(model => model.Employee)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User)
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Times)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                Зарплата
             </th>
             <th></th>
         </tr>
@@ -48,6 +64,15 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Times)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Multiplication(item.Times, item.price)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Изменить</a> |

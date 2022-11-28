@@ -60,7 +60,7 @@ namespace StoreClothess.Controllers
 
         public IActionResult UserList() => View(_userManager.Users.ToList());
 
-        [Authorize(Roles = "Директор")]
+        [Authorize(Roles = "Директор, Администратор")]
         public async Task<IActionResult> Edit(string userId)
         {
             // получаем пользователя
@@ -83,7 +83,7 @@ namespace StoreClothess.Controllers
             return NotFound();
         }
         [HttpPost]
-        [Authorize(Roles = "Директор")]
+        [Authorize(Roles = "Директор, Администратор")]
         public async Task<IActionResult> Edit(string userId, List<string> roles)
         {
             // получаем пользователя

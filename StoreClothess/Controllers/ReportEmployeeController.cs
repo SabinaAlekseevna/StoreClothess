@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StoreClothess.Data.Migrations;
 using StoreClothess.Models;
 
 namespace StoreClothess.Controllers
 {
+    [Authorize]
     public class ReportEmployeeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,6 +19,7 @@ namespace StoreClothess.Controllers
             _logger = logger;
             _userManager = userManager;
         }
+        [Authorize(Roles = "Директор, Администратор, Бухгалтер")]
         public async Task<IActionResult> Index()
         {
 

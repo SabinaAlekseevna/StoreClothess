@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using StoreClothess.Models;
 
 namespace StoreClothess.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Директор")]
     public class AdministratorController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -53,7 +54,7 @@ namespace StoreClothess.Controllers
         }
 
 
-        [Authorize(Roles = "Директор")]
+        
         public IActionResult Create()
         {
             ViewData["StoreID"] = new SelectList(_context.StoreDB, "Id", "Stores");
@@ -64,7 +65,7 @@ namespace StoreClothess.Controllers
  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StoreID,ID,Name,Age,Phone,Employee,UserID")] Administrator administrator)
+        public async Task<IActionResult> Create([Bind("StoreID,ID,Name,Age,Phone,Employee,UserID, Times, price")] Administrator administrator)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +80,7 @@ namespace StoreClothess.Controllers
         }
 
 
-        [Authorize(Roles = "Директор")]
+       
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,14 +94,14 @@ namespace StoreClothess.Controllers
                 return NotFound();
             }
             ViewData["StoreID"] = new SelectList(_context.StoreDB, "Id", "Stores", administrator.StoreID);
-            
+            ViewData["UserID"] = new SelectList(_userManager.Users, "Id", "UserName", administrator.UserID);
             return View(administrator);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StoreID,ID,Name,Age,Phone,Employee,UserID")] Administrator administrator)
+        public async Task<IActionResult> Edit(int id, [Bind("StoreID,ID,Name,Age,Phone,Employee,UserID, Times, price")] Administrator administrator)
         {
             if (id != administrator.ID)
             {
@@ -131,7 +132,7 @@ namespace StoreClothess.Controllers
         }
 
 
-        [Authorize(Roles = "Директор")]
+     
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

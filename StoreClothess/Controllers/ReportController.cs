@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StoreClothess.Data.Migrations;
 
 namespace StoreClothess.Controllers
 {
+    [Authorize]
     public class ReportController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -11,26 +14,13 @@ namespace StoreClothess.Controllers
         {
             _context = context;
         }
-        // public async Task<IActionResult> Index(int searchString)
-        // {
-
-        //    var products = from m in _context.ProductDB
-        //                   select m;
-
-        //   if (searchString != null)
-        //   {
-        //      products = products.Where(s => s.StoreId.Equals(searchString));
-        //   }
-
-
-        // return View(await products.ToListAsync());
-        //}
-
+       
         public IActionResult Home()
         {
             return View();
         }
 
+        [Authorize(Roles = "Директор, Администратор, Бухгалтер")]
         public async Task<IActionResult> Index(string searchString)
         {
 

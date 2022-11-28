@@ -2,7 +2,7 @@
 
 namespace StoreClothess.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Администратор, Директор")]
     public class SellerCashierController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -15,7 +15,7 @@ namespace StoreClothess.Controllers
             _userManager = userManager;
         }
 
-
+       
         public async Task<IActionResult> Index()
         {
 
@@ -25,7 +25,7 @@ namespace StoreClothess.Controllers
 
         }
 
-
+        
         public async Task<IActionResult> Details(int? id, string? storename)
         {
             if (id == null)
@@ -48,7 +48,7 @@ namespace StoreClothess.Controllers
         }
 
 
-       [Authorize(Roles = "Администратор, Директор")]
+       
         public IActionResult Create()
         {
             ViewData["StoreID"] = new SelectList(_context.StoreDB, "Id", "Stores");
@@ -59,7 +59,7 @@ namespace StoreClothess.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StoreID,ID,Name,Age,Phone,Employee,UserID")] SellerCashier sellerCashier)
+        public async Task<IActionResult> Create([Bind("StoreID,ID,Name,Age,Phone,Employee,UserID, Times, price")] SellerCashier sellerCashier)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace StoreClothess.Controllers
         }
 
 
-        [Authorize(Roles = "Администратор, Директор")]
+        
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -89,13 +89,14 @@ namespace StoreClothess.Controllers
                 return NotFound();
             }
             ViewData["StoreID"] = new SelectList(_context.StoreDB, "Id", "Stores", sellerCashier.StoreID);
+            ViewData["UserID"] = new SelectList(_userManager.Users, "Id", "UserName", sellerCashier.UserID);
             return View(sellerCashier);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StoreID,ID,Name,Age,Phone,Employee,UserID")] SellerCashier sellerCashier)
+        public async Task<IActionResult> Edit(int id, [Bind("StoreID,ID,Name,Age,Phone,Employee,UserID, Times, price")] SellerCashier sellerCashier)
         {
             if (id != sellerCashier.ID)
             {
@@ -125,8 +126,7 @@ namespace StoreClothess.Controllers
             return View(sellerCashier);
         }
 
-        // GET: Students/Delete/5
-        [Authorize(Roles = "Администратор, Директор")]
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,7 +144,7 @@ namespace StoreClothess.Controllers
             return View(sellerCashier);
         }
 
-        // POST: Students/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -14,7 +14,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th></th>
+             <th>
+                @Html.DisplayNameFor(model => model.SellerCashier.Times)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellerCashier.price)
+            </th>
+          
         </tr>
     </thead>
     @foreach (var user in Model)
@@ -35,6 +41,19 @@
             <td>
                 @Html.DisplayFor(modelItem => user.Email)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.Admivistrator.Times)
+                @Html.DisplayFor(modelItem => user.Director.Times)
+                @Html.DisplayFor(modelItem => user.Bookkeeper.Times)
+                @Html.DisplayFor(modelItem => user.SellerCashier.Times)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.Admivistrator.price)
+                @Html.DisplayFor(modelItem => user.Director.price)
+                @Html.DisplayFor(modelItem => user.Bookkeeper.price)
+                @Html.DisplayFor(modelItem => user.SellerCashier.price)
+            </td>
+      
         </tr>
     }
 </table>
